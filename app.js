@@ -17,25 +17,24 @@ var schema = buildSchema(`
 	}
 
     type Query {
-        getProperties(search: String): [Property]
+        getProperties(search: String, criteria: String!): [Property]
     }
 `);
 const properties = [
 	{"id":"5592d311d7c6770300911b65","street":"505 South Market St","city":"San Jose","state":"CA","zip":"95008","rent":3500},
-	{"id":"5592d311d7c6770300911b64","street":"404 South Market St","city":"San Maria","state":"CA","zip":"95008","rent":3200},
-	{"id":"5592d311d7c6770300911b63","street":"303 South Market St","city":"San Dosena","state":"CA","zip":"95008","rent":3100},
-	{"id":"5592d311d7c6770300911b62","street":"202 South Market St","city":"San Delabra","state":"CA","zip":"95008","rent":3000},
+	{"id":"456161314f21gfd45gs14543","street":"404 North Market St","city":"San Maria","state":"DA","zip":"45789","rent":8200},
+	{"id":"32f1a5f4q51r22332123fda2","street":"303 East Market St","city":"San Dosena","state":"EA","zip":"12451","rent":1100},
+	{"id":"345451fd2ag4f551423d4uy3","street":"202 West Market St","city":"San Delabra","state":"FA","zip":"00128","rent":6000},
 ]
 // The root provides a resolver function for each API endpoint
 var root = {
     getProperties: (args) => {
     	if(args.search.length>0){
 	    	let matchingProperties = []
+
 	    	for(let i = 0; i < properties.length; i++){
-	    		if(properties[i].id.includes(args.search) || properties[i].street.includes(args.search) || 
-	    			properties[i].city.includes(args.search) || properties[i].state.includes(args.search) ||
-	    			properties[i].zip.includes(args.search)){
-	    			matchingProperties.push(properties[i])
+	    		if(properties[i][args.criteria].includes(args.search)){
+	    			matchingProperties.push(properties[i]);
 	    		}
 	    	}
 	    	return matchingProperties;
