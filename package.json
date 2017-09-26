@@ -1,0 +1,14 @@
+{
+  "name": "expressql",
+  "version": "1.0.0",
+  "description": "expressjs exposing graphql endpoint",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kristoferlora",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.5"
+  }
+}
