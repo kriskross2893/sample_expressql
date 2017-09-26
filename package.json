@@ -5,6 +5,7 @@
   "repository": "https://github.com/kriskross2893/sample_expressql",
   "main": "index.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "kristoferlora",
