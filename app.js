@@ -1,5 +1,6 @@
 const express = require('express')
 const graphqlHTTP = require('express-graphql');
+var cors = require('cors');
 var { buildSchema } = require('graphql');
 
 const app = express()
@@ -28,7 +29,7 @@ const properties = [
 // The root provides a resolver function for each API endpoint
 var root = {
     getProperties: (args) => {
-    	if(args.search===''){
+    	if(args.search.length>0){
 	    	let matchingProperties = []
 	    	for(let i = 0; i < properties.length; i++){
 	    		if(properties[i].id.includes(args.search) || properties[i].street.includes(args.search) || 
@@ -39,15 +40,16 @@ var root = {
 	    	}
 	    	return matchingProperties;
     	} else {
-    		return properties;
+    		return [];
     	}
     },
 };
 
+app.use(cors());
+
 app.use('/graphql', graphqlHTTP({
     schema: schema,
     rootValue: root,
-    graphiql: true,
 }));
 
 app.listen(3000, function () {
